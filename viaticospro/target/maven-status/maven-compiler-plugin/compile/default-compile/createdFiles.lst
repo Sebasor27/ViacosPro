@@ -1,0 +1,12 @@
+com\viaticospro\domain\Invitado.class
+com\viaticospro\domain\Factura.class
+com\viaticospro\ViaticosproApplication.class
+com\viaticospro\services\FacturaService.class
+com\viaticospro\services\FacturaServiceImpl.class
+com\viaticospro\controllers\MainController.class
+com\viaticospro\repositories\FacturaRepository.class
+com\viaticospro\application\FacturaDTO.class
+com\viaticospro\application\InvitadoDTO.class
+com\viaticospro\controllers\FacturaController.class
+com\viaticospro\repositories\InvitadoRepository.class
+com\viaticospro\domain\BasicEntity.class
