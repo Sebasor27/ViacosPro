@@ -1,70 +1,195 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ViaticosPro
 
-## Available Scripts
+ViaticosPro es un sistema web que permite gestionar facturas, invitados y otros aspectos relacionados con viáticos. Este proyecto utiliza un **frontend en React**, un **backend en Spring Boot**, y una **base de datos MySQL**.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## **Tabla de Contenido**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. [Tecnologías utilizadas](#tecnologías-utilizadas)
+2. [Estructura del proyecto](#estructura-del-proyecto)
+3. [Requisitos previos](#requisitos-previos)
+4. [Configuración del entorno](#configuración-del-entorno)
+   - [Configuración de la base de datos](#1-configuración-de-la-base-de-datos)
+   - [Configuración del backend](#2-configuración-del-backend)
+   - [Configuración del frontend](#3-configuración-del-frontend)
+5. [Endpoints disponibles](#endpoints-disponibles)
+6. [Comandos útiles](#comandos-útiles)
+7. [Despliegue](#despliegue)
+8. [Créditos](#créditos)
+9. [Licencia](#licencia)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## **Tecnologías utilizadas**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Frontend**: React (Create React App)
+- **Backend**: Spring Boot (Java 17, JPA, Lombok)
+- **Base de datos**: MySQL
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## **Estructura del proyecto**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```plaintext
+viaticospro/
+├── public                  # Código fuente del proyecto (frontend)
+├── src                      # Archivos del formulario factura (frontend)
+├── viaticospro         # Carpeta Backend
+   ├── src              
+   ├── target               
+   ├── viaticosS(1).sql        # Script de la base de datos
+├── .gitignore             # Archivos y carpetas a ignorar en Git
+├── README.md              # Documento de información del proyecto
+├── package-lock.json      # Archivo de bloqueo de dependencias de Node
+└── package.json           # Archivo de configuración de dependencias de Node
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## **Requisitos previos**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Node.js (versión 17 o superior, recomendado 18)
+- Java 17 o superior
+- Maven (para compilar el backend)
+- MySQL (versión 8.0 o superior)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## **Configuración del entorno**
 
-## Learn More
+### **1. Configuración de la base de datos**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Crea una base de datos en MySQL.
+2. Importa el script `viaticospro.sql` que se encuentra en la carpeta raíz del proyecto:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+mysql -u <usuario> -p <nombre_de_base_datos> < viaticospro.sql
+```
 
-### Code Splitting
+### **2. Configuración del backend**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Navega a la carpeta del backend:
 
-### Analyzing the Bundle Size
+```bash
+cd viaticospro/
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. Configura el archivo `application.properties` o `application.yml` con los datos de tu base de datos:
 
-### Making a Progressive Web App
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/<nombre_de_base_datos>
+spring.datasource.username=<usuario>
+spring.datasource.password=<contraseña>
+spring.jpa.hibernate.ddl-auto=update
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3. Compila y ejecuta el backend:
 
-### Advanced Configuration
+```bash
+./mvnw spring-boot:run
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+El backend estará disponible en [http://localhost:8080](http://localhost:8080).
 
-### Deployment
+### **3. Configuración del frontend**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Navega a la carpeta del frontend:
 
-### `npm run build` fails to minify
+```bash
+cd viaticospro/
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+2. Instala las dependencias:
+
+```bash
+npm install
+```
+
+3. Ejecuta la aplicación:
+
+```bash
+npm start
+```
+
+El frontend estará disponible en [http://localhost:3000](http://localhost:3000).
+
+---
+
+## **Endpoints disponibles**
+
+### **Backend (Spring Boot)**
+
+| Método | Endpoint                        | Descripción                                |
+|--------|--------------------------------|--------------------------------------------|
+| POST   | `/api/factura/save`               | Registrar una nueva factura                |
+| GET    | `/api/factura/list`               | Obtener todas las facturas                 |
+| GET    | `/api/factura/{ruc}`         | Consultar facturas por RUC                 |
+| GET    | `/api/factura/invitados/{facturaId}`| Obtener invitados relacionados a una factura |
+
+#### **Ejemplo de uso**
+
+Registrar una factura:
+
+```bash
+curl -X POST \
+  http://localhost:8080/api/factura/save \
+  -H "Content-Type: application/json" \
+  -d '{
+    "fecha": "2025-01-20",
+    "detalle": "Almuerzo de trabajo",
+    "nombreEstablecimiento": "Restaurante XYZ",
+    "ruc": "1234567890123",
+    "numeroFactura": "001-001-0000001",
+    "subtotal": 100.00,
+    "iva": 15.00,
+    "total": 115.00,
+    "invitados": [
+        {"nombre": "Juan Perez", "cargo": "Gerente"},
+        {"nombre": "Maria Lopez", "cargo": "Analista"}
+    ]
+  }'
+```
+
+---
+
+## **Comandos útiles**
+
+### **Frontend**
+
+- `npm start`: Ejecuta la aplicación en modo desarrollo.
+- `npm run build`: Construye la aplicación para producción.
+
+### **Backend**
+
+- `./mvnw spring-boot:run`: Ejecuta el backend en modo desarrollo.
+- `./mvnw clean package`: Construye un archivo JAR listo para producción.
+
+---
+
+## **Despliegue**
+
+1. Genera un build del frontend:
+
+```bash
+cd viaticospro/
+npm run build
+```
+
+Esto generará una carpeta `build/` con los archivos optimizados.
+
+2. Integra los archivos del frontend en el backend configurando un `@Controller` o un proxy para servir el frontend desde Spring Boot.
+
+---
+
+## **Créditos**
+
+Este proyecto fue desarrollado por Sebasor27.
+
+---
+
+## **Licencia**
+
+Este proyecto está bajo la licencia MIT.
